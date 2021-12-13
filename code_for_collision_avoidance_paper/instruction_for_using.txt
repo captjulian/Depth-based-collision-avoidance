@@ -1,0 +1,39 @@
+1. required package:
+
+
+mav_trajectory_generation : https://github.com/ethz-asl/mav_trajectory_generation //the trajectory generation lib
+mav_control_rw : https://github.com/ethz-asl/mav_control_rw // the model predictive control lib
+RotorS : https://github.com/ethz-asl/rotors_simulator // the rotors gazebo simulator
+
+2. How to use the code
+
+(1) Complie the package of "Depth_Based_RRT_STAR" and "rotors_simulator" using catkin_make.
+
+(2) roslaunch rotors_gazebo env_firefly.launch 
+
+which is in the launch fold of rotors_gazebo in the rotors_simulator;
+
+(3) roslaunch rotors_gazebo mav_swarm_firefly.launch 
+
+which is in the same fold of rotors_gazebo
+
+(4) roslaunch  Depth_BASED_RRT_STAR depth_laserscan.launch
+
+which is in the launch file of "Depth_Based_RRT_STAR"
+
+make sure the topic of image and camera_info is feasible.
+
+(5) roslaunch  mav_linear_mpc mav_linear_mpc_sim.launch
+
+which is the MPC control from mav_control_rw pakeage.
+
+(6) roslaunch  Depth_BASED_RRT_STAR depth_based_rrt_star_corridor
+
+which is the collision avoidance algorithm.
+
+then you can find the drone start to move in the environment.
+
+
+3. About the code.
+
+the main function of the collision avoidance approach and the obstacle distance estimation is the fast_planner_using_sdf_node.cpp and sdf_collision_detector.cpp

@@ -1,0 +1,27 @@
+<launch>
+
+
+  <arg name="world_name" default="basic"/>
+  <arg name="enable_logging" default="false"/>
+  <arg name="enable_ground_truth" default="true"/>
+  <arg name="drone_swarm_number" default="1"/>
+  <arg name="mav_name" default="firefly" />
+
+   <!--group ns="$(arg mav_name)$(arg drone_swarm_number)"-->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <include file="$(find rotors_gazebo)/launch/spawn_mav.launch">
+      <arg name="mav_name" value="$(arg mav_name)" />
+      <arg name="namespace" value="$(arg mav_name)$(arg drone_swarm_number)" />
+      <arg name="model" value="$(find rotors_description)/urdf/mav_with_vi_sensor.gazebo" />
+      <arg name="enable_logging" value="$(arg enable_logging)" />
+      <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
+      <arg name="log_file" value="$(arg mav_name)$(arg drone_swarm_number)"/>
+      <!-- <arg name="y" value="$(arg drone_swarm_number)"/> -->
+      <arg name="y" value="0"/>
+      <arg name="x" value="-3"/>
+    </include>
+ <!--/group-->
+
+
+</launch>

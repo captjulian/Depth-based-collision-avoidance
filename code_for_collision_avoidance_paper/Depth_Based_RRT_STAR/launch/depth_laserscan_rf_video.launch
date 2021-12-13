@@ -1,0 +1,19 @@
+<!-- Launch file for the Depth_image_laser_scan_transfor -->
+
+<launch>
+
+<node pkg="rviz" type="rviz" name="rviz"
+    args="-d $(find Depth_BASED_RRT_STAR)/rviz/depth_based_rrt_star.rviz"/>
+
+<node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" > 
+  <remap from="image" to="/camera/depth/image_rect_raw"/>
+  <!--remap from="/hummingbird1/camera_front_depth/camera/camera_info" to="/hummingbird1/camera_front_depth/depth/camera_info"/-->
+  <remap from="scan" to="depth_transfor/scan"/>
+  <!--param name="output_frame_id" value="base_link"/-->
+  <!--param name="scan_time" value="0.01"/-->
+  <param name="range_min" value="0.1"/>
+  <param name="range_max" value="2.0"/>
+  <param name="output_frame_id" value="map"/>
+</node>
+
+</launch>

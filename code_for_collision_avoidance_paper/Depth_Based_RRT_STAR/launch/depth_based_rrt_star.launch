@@ -1,0 +1,52 @@
+<!-- Launch file for the Depth-Based-RealTime-RRTSTAR-detector -->
+
+<launch>
+
+<arg name="my_stack_directory" 		default="$(env AEROSTACK_STACK)" />
+<arg name="drone_id_int" 		      default="7" />  	
+<arg name="drone_id_namespace"    default="drone7" />
+<arg name="configs_path"			default="$(find Depth_BASED_RRT_STAR)/cfg/DepthBasedNavigation.xml" />
+<arg name="Xmin" 						default="-1.0"/>
+<arg name="Xmax" 						default="10.0"/>
+<arg name="Ymin" 						default="0.0"/>
+<arg name="Ymax" 						default="20.0"/>
+<arg name="END_X" 						default="4.5"/>
+<arg name="END_Y" 						default="0.0"/>
+<arg name="END_Z" 						default="1.1"/>
+<arg name="RRTSTAR_NEIGHBOR_FACTOR" 				default="1.0"/>
+<arg name="vmax" 					        default="1.2"/>
+<arg name="amax" 					        default="10"/>
+<arg name="random_initial_x" 					default="0"/>
+<arg name="random_goal_x" 					default="50"/>
+<arg name="random_up_lim_y" 			                default="35.0"/>
+<arg name="random_low_lim_y" 			                default="15.0"/>
+<arg name="random_up_lim_y_initial" 			        default="35.0"/>
+<arg name="random_low_lim_y_initial" 			        default="15.0"/>
+<arg name="file_name" 					        default="/home/liang/document.txt"/>
+
+
+
+<node pkg="Depth_BASED_RRT_STAR" type="depth_based_rrt_star_node" name="depth_based_rrt_star_node" output="screen">
+	<param name="configs_path" 	value="$(arg configs_path)" type="string"/>
+	
+	<param name = "Xmin"     					value="$(arg Xmin)" 	 			type="double" />
+	<param name = "Xmax"     					value="$(arg Xmax)" 	 			type="double" />
+	<param name = "Ymin"     					value="$(arg Ymin)" 	 			type="double" />
+	<param name = "Ymax"     					value="$(arg Ymax)" 	 			type="double" />
+	<param name = "END_X"     					value="$(arg END_X)" 	 			type="double" />
+	<param name = "END_Y"     					value="$(arg END_Y)" 	 			type="double" />
+        <param name = "END_Z"     					value="$(arg END_Z)" 	 			type="double" />
+        <param name = "amax"     					value="$(arg amax)" 	 			type="double" />
+        <param name = "vmax"     					value="$(arg vmax)" 	 			type="double" />
+	<param name = "RRTSTAR_NEIGHBOR_FACTOR"     			value="$(arg RRTSTAR_NEIGHBOR_FACTOR)" 	 	type="double" />
+        <param name = "random_initial_x"     			        value="$(arg random_initial_x)" 	 	type="double" />
+        <param name = "random_goal_x"     				value="$(arg random_goal_x)" 	 		type="double" />
+        <param name = "random_up_lim_y"     			        value="$(arg random_up_lim_y)" 	 		type="double" />
+        <param name = "random_low_lim_y"     			        value="$(arg random_low_lim_y)" 	 	type="double" />
+        <param name = "random_up_lim_y_initial"     		        value="$(arg random_up_lim_y_initial)" 	 	type="double" />
+        <param name = "random_low_lim_y_initial"     		        value="$(arg random_low_lim_y_initial)" 	type="double" />
+        <param name = "file_name"     				        value="$(arg file_name)" 	 		type="string" />
+
+</node>
+
+</launch>
